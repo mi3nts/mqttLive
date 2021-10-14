@@ -4,9 +4,6 @@ import serial.tools.list_ports
 import yaml
 
 
-# Change Accordingly  
-dataFolderMQTTReference   = "/home/teamlary/mintsData/referenceMQTT"  # The path of your MQTT Reference Data 
-dataFolderMQTT            = "/home/teamlary/mintsData/rawMQTT"        # The path of your MQTT Raw Data 
 tlsCert                   = "/etc/ssl/certs/ca-certificates.crt"     # The path of your TLS cert
 
 
@@ -22,7 +19,7 @@ droneFile                = 'drone.yml'
 centralNodesFile         = 'centralNodes.yml'
 otterFile                = 'otter.yml'
 carRoofFile              = 'carRoof.yml'
-utdNodesFile             = 'utdNodes.yml'
+utdNodesFile             = 'mintsXU4/currentNodes.yml'
 mockNodesFile            = 'sensorNodesMock.yml'
 mqttBroker               = "mqtt.circ.utdallas.edu"
 mqttPort                 = 8883  # Secure port
@@ -55,7 +52,13 @@ rawPklsFolder             = dataFolder    + "/rawPkls"
 referencePklsFolder       = dataFolder    + "/referencePkls"
 mergedPklsFolder          = dataFolder    + "/mergedPkls"
 modelsPklsFolder          = dataFolder    + "/modelsPkls"
+liveFolder                = dataFolder    + "/liveUpdate/results"
 
+
+# Change Accordingly  
+dataFolderMQTTReference   = dataFolder + "/referenceMQTT"  # The path of your MQTT Reference Data 
+dataFolderMQTT            = dataFolder + "/rawMQTT"        # The path of your MQTT Raw Data 
+dataFolderReference       = dataFolder + "/reference"
 
 timeSpan                  = mintsDefinitions['timeSpan']
 
@@ -74,4 +77,4 @@ print("MQTT Credentials File      : {0}".format(mqttCredentialsFile))
 print("MQTT Broker and Port       : {0}, {1}".format(mqttOn,mqttPort))
 # print("Sensor Nodes File          : {0}".format(sensorNodesFile))
 
-dataFolderReference       = "/home/teamlary/mintsData/reference"
+

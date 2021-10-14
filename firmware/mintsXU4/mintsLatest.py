@@ -158,7 +158,7 @@ def readJSONLatestAll(sensorName):
         
 
 def readJSONLatestAllMQTT(nodeID,sensorID):
-    directoryIn  = dataFolderMQTTReference+"/"+nodeID+"/"+sensorID+".json"
+    directoryIn  = dataFolderMQTT+"/"+nodeID+"/"+sensorID+".json"
     try:
         with open(directoryIn, 'r') as myfile:
             # dataRead=myfile.read()
@@ -166,8 +166,8 @@ def readJSONLatestAllMQTT(nodeID,sensorID):
 
         time.sleep(0.01)
         return dataRead, True;
-    except:
-        print("Data Conflict!")
-        return "NaN", False
+    except Exception as e:
+        print("[ERROR] Could not publish data, error: {}".format(e))
+    
 
 

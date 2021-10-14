@@ -3,7 +3,7 @@ nodeIDs:
   - nodeID: 001e06305a12
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -12,7 +12,7 @@ nodeIDs:
   - nodeID: 001e06323a12
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -21,7 +21,7 @@ nodeIDs:
   - nodeID: 001e06318cd1
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -30,7 +30,7 @@ nodeIDs:
   - nodeID: 001e06305a61
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -39,7 +39,7 @@ nodeIDs:
   - nodeID: 001e06323a05
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -48,7 +48,7 @@ nodeIDs:
   - nodeID: 001e06305a57
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -57,7 +57,7 @@ nodeIDs:
   - nodeID: 001e063059c2
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -66,7 +66,7 @@ nodeIDs:
   - nodeID: 001e06318c28
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -75,7 +75,7 @@ nodeIDs:
   - nodeID: 001e06305a6b
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -84,7 +84,7 @@ nodeIDs:
   - nodeID: 001e063239e3
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -93,7 +93,7 @@ nodeIDs:
   - nodeID: 001e06305a6c
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -102,7 +102,7 @@ nodeIDs:
   - nodeID: 001e063239e6
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -111,7 +111,7 @@ nodeIDs:
   - nodeID: 001e06305a0a
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -120,7 +120,7 @@ nodeIDs:
   - nodeID: 001e06318cee
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -129,7 +129,7 @@ nodeIDs:
   - nodeID: 001e06318cf1
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -138,7 +138,7 @@ nodeIDs:
   - nodeID: 001e063059c1
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -147,7 +147,7 @@ nodeIDs:
   - nodeID: 001e063239e4
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -156,7 +156,7 @@ nodeIDs:
   - nodeID: 001e06323952
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -165,7 +165,7 @@ nodeIDs:
   - nodeID: 001e06305a2c
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -174,7 +174,7 @@ nodeIDs:
   - nodeID: 001e06323a06
     climateSensor: "BME280"
     climateSensorBegin: "2021-10-01"
-    pmSensor: "IPS71000"
+    pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
     climateSensorDate: "2021-10-01"
     latitude: 32.9921705757576
@@ -213,6 +213,6 @@ sensors:
   - SKYCAM_002
   - SKYCAM003
   - MCAM 
-  - IPS7100
+  - IPS71000
   - BME680
 

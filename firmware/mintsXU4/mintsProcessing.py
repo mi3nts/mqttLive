@@ -178,11 +178,12 @@ def cropLimits(dataIn,variableIn,limitLow,limitHigh):
 
 
 def writeCSV3(writePath,sensorDictionary):
-    exists = os.path.isfile(writePath)
+    exists = directoryCheck(writePath)
     keys =  list(sensorDictionary.keys())
     with open(writePath, 'a') as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=keys)
         if(not(exists)):
+            # directoryCheck(writePath)
             writer.writeheader()
         writer.writerow(sensorDictionary)
 
@@ -284,7 +285,7 @@ def climateCalibration(nodeID,dateNow, mintsData,climateTargets,climateSensor,se
                 ("dateNow"           ,dateNow)
                ])
    
-        pd.to_pickle(regressor ,getPathGeneric(modelsPklsFolder,nodeID,target+"_MDL","pkl")  )
+        pd.to_pickle(regressor ,getPathGeneric(modelsPklsFolder,nodeID,target+"_MDL_"+dateNow,"pkl")  )
 
         writePath = getPathGenericParent(modelsPklsFolder,"climateCalibStats","csv")       
         writeCSV3(writePath,statsDictionary)

@@ -12,7 +12,7 @@
 #   https://github.com/mi3nts
 #   http://utdmints.info/
 #  ***************************************************************************
-
+import pandas as pd
 import serial
 import datetime
 import os
@@ -36,7 +36,41 @@ latestOn       = mD.latestOn
 mqttOn         = mD.mqttOn
 
 
-def wimdaReader(dateTime,sensorName,sensorDictionary):
+def getWritePathMQTT(nodeID,labelIn,dateTime):
+    #Example  : MINTS_0061_OOPCN3_2019_01_04.csv
+    writePath = dataFolderMQTT+"/"+nodeID+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+"/"+ "MINTS_"+ nodeID+ "_" +labelIn + "_" + str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) +".csv"
+    return writePath; 
+
+def getWritePathMQTT(nodeID,labelIn,dateTime):
+    #Example  : MINTS_0061_OOPCN3_2019_01_04.csv
+    writePath = dataFolderMQTT+"/"+nodeID+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+"/"+ "MINTS_"+ nodeID+ "_" +labelIn + "_" + str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) +".csv"
+    return writePath; 
+
+def directoryCheck(outputPath):
+    exists = os.path.isfile(outputPath)
+    directoryIn = os.path.dirname(outputPath)
+    print(directoryIn)
+
+    if not os.path.exists(directoryIn):
+        print("Creating Directory")
+        os.makedirs(directoryIn)
+    return exists
+
+
+def writeCSV2(writePath,sensorDictionary,exists):
+    keys =  list(sensorDictionary.keys())
+    with open(writePath, 'a') as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=keys)
+        # print(exists)
+        if(not(exists)):
+            writer.writeheader()
+        writer.writerow(sensorDictionary)
+
+
+
+
+
+# def wimdaReader(dateTime,sensorName,sensorDictionary):
     #Getting Write Path
   
   
@@ -50,7 +84,7 @@ def wimdaReader(dateTime,sensorName,sensorDictionary):
     # if(mqttOn):
     #    mL.writeMQTTLatest(sensorDictionary,sensorName)   
 
-    print("-----------------------------------")
+    # print("-----------------------------------")
 #     print(sensorName)
 #     print(sensorDictionary)
 
@@ -742,14 +776,6 @@ def wimdaReader(dateTime,sensorName,sensorDictionary):
 
 
 
-# def writeCSV2(writePath,sensorDictionary,exists):
-#     keys =  list(sensorDictionary.keys())
-#     with open(writePath, 'a') as csv_file:
-#         writer = csv.DictWriter(csv_file, fieldnames=keys)
-#         # print(exists)
-#         if(not(exists)):
-#             writer.writeheader()
-#         writer.writerow(sensorDictionary)
 
 
 # # def writeHDF5Latest(writePath,sensorDictionary,sensorName):
@@ -829,15 +855,6 @@ def wimdaReader(dateTime,sensorName,sensorDictionary):
 #     directoryCheck(outputPath)
 #     csvWriter(outputPath,reader,keys)
 
-# def directoryCheck(outputPath):
-#     exists = os.path.isfile(outputPath)
-#     directoryIn = os.path.dirname(outputPath)
-#     print(directoryIn)
-
-#     if not os.path.exists(directoryIn):
-#         print("Creating Directory")
-#         os.makedirs(directoryIn)
-#     return exists
 
 # def csvWriter(writePath,organizedData,keys):
 #     with open(writePath,'w') as output_file:
@@ -858,10 +875,7 @@ def wimdaReader(dateTime,sensorName,sensorDictionary):
 #     return directoryPaths,directoryNames,directoryFiles;
 
 
-# def getWritePathMQTT(nodeID,labelIn,dateTime):
-#     #Example  : MINTS_0061_OOPCN3_2019_01_04.csv
-#     writePath = dataFolderMQTT+"/"+nodeID+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+"/"+ "MINTS_"+ nodeID+ "_" +labelIn + "_" + str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) +".csv"
-#     return writePath; 
+
        
 # def getWritePathMQTTReference(nodeID,labelIn,dateTime):
 #     #Example  : MINTS_0061_OOPCN3_2019_01_04.csv
