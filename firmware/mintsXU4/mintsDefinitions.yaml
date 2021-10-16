@@ -179,6 +179,43 @@ nodeIDs:
     longitude: -96.757853439394
     altitude: 222.2
 
+sensors:
+  - IP
+  - OPCN3
+  - OPCN2
+  - SCD30
+  - BME280 
+  - MGS001
+  - HM3301
+  - GPSGPGGA2
+  - GPSGPRMC2  
+  - AS7262
+  - TSL2591
+  - VEML6075
+  - TMG3993
+  - SI114X
+  - GL001
+  - GUV001
+  - APDS9002
+  - LIBRAD
+  - TB108L  # For All of XU4 
+  - HCHDT
+  - WIMWV
+  - GPGGA
+  - GPVTG
+  - GPZDA
+  - WIMDA
+  - YXXDR
+  - SEN0232 
+  - AS3935
+  - SKYCAM_002
+  - SKYCAM003
+  - MCAM 
+  - IPS7100
+  - BME680
+
+
+
 climateTargets:
     - target: "WIMDA_airTemperature"
       BME280inputs:

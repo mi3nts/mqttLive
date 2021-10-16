@@ -34,10 +34,6 @@ mqttPW       = credentials['mqtt']['password']
 transmitters = transmitDetail['nodes']
 sensors      = transmitDetail['sensors']
 
-
-
-
-
 decoder      = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)
 # nodeObjects  = []
 
@@ -48,12 +44,10 @@ def on_connect(client, userdata, flags, rc):
     # Subscribing in on_connect() - if we lose the connection and
     # reconnect then subscriptions will be renewed.
     for transmitter in transmitters:
-
-        for sensor in sensors:
-            topic = transmitter+"/"+ sensor
-            client.subscribe(topic)
-            print("Subscrbing to Topic: "+ topic)
-
+        topic =transmitter+"/mintsCalibrated"
+        client.subscribe(topic)
+        print("Subscrbing to Topic: "+ topic)
+     
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print()
@@ -66,12 +60,8 @@ def on_message(client, userdata, msg):
         print("Node ID   :" + nodeID)
         print("Sensor ID :" + sensorID)
         print("Data      : " + str(sensorDictionary))
-        
-        if sensorID== "FRG001":
-            dateTime  = datetime.datetime.strptime(sensorDictionary["dateTime"], '%Y-%m-%d %H:%M:%S')
-        else:
-            dateTime  = datetime.datetime.strptime(sensorDictionary["dateTime"], '%Y-%m-%d %H:%M:%S.%f')
-        writePath = mSR.getWritePathMQTT(nodeID,sensorID,dateTime)
+        dateTime  = datetime.datetime.strptime(sensorDictionary["dateTime"], '%Y-%m-%d %H:%M:%S.%f')
+        writePath = mSR.getWritePathMQTTCalibrated(nodeID,sensorID,dateTime)
         exists    = mSR.directoryCheck(writePath)
         sensorDictionary = decoder.decode(msg.payload.decode("utf-8","ignore"))
         print("Writing MQTT Data")

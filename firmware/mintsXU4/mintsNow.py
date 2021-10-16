@@ -72,9 +72,9 @@ def getGPS(nodeID):
     for nodeDataCurrent in nodeIDs:
         nodeIDCurrent              = nodeDataCurrent['nodeID']
         if(nodeID == nodeIDCurrent):
-            latitude       = nodeDataCurrent['pmSensor']
-            longitude      = nodeDataCurrent['climateSensor']
-            altitude       = nodeDataCurrent['pmSensor']
+            latitude       = nodeDataCurrent['latitude']
+            longitude      = nodeDataCurrent['longitude']
+            altitude       = nodeDataCurrent['altitude']
 
             return latitude,longitude,altitude;
 

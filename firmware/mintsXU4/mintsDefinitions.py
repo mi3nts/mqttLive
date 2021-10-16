@@ -22,6 +22,7 @@ carRoofFile              = 'carRoof.yml'
 utdNodesFile             = 'mintsXU4/currentNodes.yml'
 mockNodesFile            = 'sensorNodesMock.yml'
 mqttBroker               = "mqtt.circ.utdallas.edu"
+mintsDefinitionsFile     = 'mintsXU4/mintsDefinitions.yaml'
 mqttPort                 = 8883  # Secure port
 # senderNodes            = yaml.load(open(sensorNodesFile))
 mintsDefinitions         = yaml.load(open('mintsXU4/mintsDefinitions.yaml'))
@@ -59,7 +60,7 @@ liveFolder                = dataFolder    + "/liveUpdate/results"
 dataFolderMQTTReference   = dataFolder + "/referenceMQTT"  # The path of your MQTT Reference Data 
 dataFolderMQTT            = dataFolder + "/rawMQTT"        # The path of your MQTT Raw Data 
 dataFolderReference       = dataFolder + "/reference"
-
+dataFolderMQTTCalib       = dataFolder + "/calibratedMQTT"
 timeSpan                  = mintsDefinitions['timeSpan']
 
 

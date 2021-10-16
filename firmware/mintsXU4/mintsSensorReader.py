@@ -28,17 +28,18 @@ from collections import OrderedDict
 import netifaces as ni
 import math
 
-macAddress     = mD.macAddress
-dataFolder     = mD.dataFolder
-dataFolderMQTT = mD.dataFolderMQTT
+macAddress              = mD.macAddress
+dataFolder              = mD.dataFolder
+dataFolderMQTT          = mD.dataFolderMQTT
+dataFolderMQTTCalib     = mD.dataFolderMQTTCalib
 dataFolderMQTTReference = mD.dataFolderMQTTReference
-latestOn       = mD.latestOn
-mqttOn         = mD.mqttOn
+latestOn                = mD.latestOn
+mqttOn                  = mD.mqttOn
 
 
-def getWritePathMQTT(nodeID,labelIn,dateTime):
+def getWritePathMQTTCalibrated(nodeID,labelIn,dateTime):
     #Example  : MINTS_0061_OOPCN3_2019_01_04.csv
-    writePath = dataFolderMQTT+"/"+nodeID+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+"/"+ "MINTS_"+ nodeID+ "_" +labelIn + "_" + str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) +".csv"
+    writePath = dataFolderMQTTCalib+"/"+nodeID+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+"/"+ "MINTS_"+ nodeID+ "_" +labelIn + "_" + str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) +".csv"
     return writePath; 
 
 def getWritePathMQTT(nodeID,labelIn,dateTime):
@@ -49,7 +50,7 @@ def getWritePathMQTT(nodeID,labelIn,dateTime):
 def directoryCheck(outputPath):
     exists = os.path.isfile(outputPath)
     directoryIn = os.path.dirname(outputPath)
-    print(directoryIn)
+    # print(directoryIn)
 
     if not os.path.exists(directoryIn):
         print("Creating Directory")

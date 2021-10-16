@@ -11,14 +11,15 @@ from mintsXU4 import mintsDefinitions as mD
 from mintsXU4 import mintsProcessing as mP
 from mintsXU4 import mintsLatest as mL
 from mintsXU4 import mintsNow as mN
-from dateutil import tz
+
+# from dateutil import tz
 import numpy as np
 from pyqtgraph import AxisItem
 from datetime import datetime, timedelta
 from time import mktime
 import statistics
 from collections import OrderedDict
-import pytz
+# import pytz
 import sys
 
 nodeIDs              = mD.mintsDefinitions['nodeIDs']
@@ -30,9 +31,9 @@ mergedPklsFolder     = mD.mergedPklsFolder
 modelsPklsFolder     = mD.modelsPklsFolder
 liveFolder           = mD.liveFolder
 
-class TimeAxisItem(pg.AxisItem):
-    def tickStrings(self, values, scale, spacing):
-        return [datetime.fromtimestamp(value) for value in values]
+# class TimeAxisItem(pg.AxisItem):
+#     def tickStrings(self, values, scale, spacing):
+#         return [datetime.fromtimestamp(value) for value in values]
 
 class node:
     def __init__(self,nodeID):
@@ -76,9 +77,9 @@ class node:
         self.longitude      = []
         self.dateTimeGPS    = []
 
-        self.lastPMDateTime      = datetime(2010, 1, 1, 0, 0, 0, 0, pytz.UTC)
-        self.lastClimateDateTime = datetime(2010, 1, 1, 0, 0, 0, 0, pytz.UTC)
-        self.lastGPSDateTime     = datetime(2010, 1, 1, 0, 0, 0, 0, pytz.UTC)
+        self.lastPMDateTime      = datetime(2010, 1, 1, 0, 0, 0, 0)
+        self.lastClimateDateTime = datetime(2010, 1, 1, 0, 0, 0, 0)
+        self.lastGPSDateTime     = datetime(2010, 1, 1, 0, 0, 0, 0)
 
         if self.pmSensor == "IPS7100":
             self.pc0_1      = []
@@ -104,17 +105,45 @@ class node:
             self.humidity     = []
             self.dateTimeClimate     = []
 
-        ### Final Rights 
-        timer = QtCore.QTimer()#to create a thread that calls a function at intervals
-        timer.timeout.connect(self.update)#the update function keeps getting called at intervals
-        timer.start(graphUpdateSpeedMs)   
-        QtGui.QApplication.instance().exec_()
+        # ### Final Rights 
+        # timer = QtCore.QTimer()#to create a thread that calls a function at intervals
+        # timer.timeout.connect(self.update)#the update function keeps getting called at intervals
+        # timer.start(graphUpdateSpeedMs)   
+        # QtGui.QApplication.instance().exec_()
 
+    def nodeReaderPM(self,jsonData):
+        try:
+            self.dataInPM       = jsonData
+            self.ctNowPM        = datetime.strptime(self.dataInPM['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
+
+            # print(self.ctNowPM)
+            if (self.ctNowPM>self.lastPMDateTime):
+                self.pmUpdater()
+        except Exception as e:
+            print("[ERROR] Could not read JSON data, error: {}".format(e))
+
+    def nodeReaderClimate(self,jsonData):
+        try:
+            self.dataInClimate  = jsonData
+            self.ctNowClimate   = datetime.strptime(self.dataInClimate['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
+            if (self.ctNowClimate>self.lastClimateDateTime):
+                self.climateUpdater() 
+        except Exception as e:
+            print("[ERROR] Could not read JSON data, error: {}".format(e))
+    
+    def nodeReaderGPS(self,jsonData):
+        try:
+            self.dataInGPS  = jsonData
+            self.ctNowGPS   = datetime.strptime(self.dataInGPS['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
+            if (self.ctNowGPS>self.lastGPSDateTime ):
+                self.gpsUpdater() 
+        except Exception as e:
+            print("[ERROR] Could not read JSON data, error: {}".format(e))
  
     def nodeReader(self):
         try:
             self.dataInPM       = mL.readJSONLatestAllMQTT(self.nodeID,self.pmSensor)[0]
-            self.ctNowPM        = datetime.strptime(self.dataInPM['dateTime'],'%Y-%m-%d %H:%M:%S.%f').replace(tzinfo=tz.tzutc()).astimezone(tz.gettz())
+            self.ctNowPM        = datetime.strptime(self.dataInPM['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
             if (self.ctNowPM>self.lastPMDateTime):
                 self.pmUpdater()
         except Exception as e:
@@ -122,7 +151,7 @@ class node:
         
         try:
             self.dataInClimate  = mL.readJSONLatestAllMQTT(self.nodeID,self.climateSensor)[0]
-            self.ctNowClimate   = datetime.strptime(self.dataInClimate['dateTime'],'%Y-%m-%d %H:%M:%S.%f').replace(tzinfo=tz.tzutc()).astimezone(tz.gettz())
+            self.ctNowClimate   = datetime.strptime(self.dataInClimate['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
             if (self.ctNowClimate>self.lastClimateDateTime):
                 self.climateUpdater() 
         except Exception as e:
@@ -130,7 +159,7 @@ class node:
         
         try:
             self.dataInGPS  = mL.readJSONLatestAllMQTT(self.nodeID,"GPSGPGGA2")[0]
-            self.ctNowGPS   = datetime.strptime(self.dataInGPS['dateTime'],'%Y-%m-%d %H:%M:%S.%f').replace(tzinfo=tz.tzutc()).astimezone(tz.gettz())
+            self.ctNowGPS   = datetime.strptime(self.dataInGPS['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
             if (self.ctNowGPS>self.lastGPSDateTime ):
                 self.gpsUpdater() 
         except Exception as e:
@@ -165,18 +194,18 @@ class node:
         # print("GET TIME")
         checkTime  = self.dateTimePM[-3]
         if(self.zeroState):
-            self.dateTimeStrCSV = str(checkTime.year)+ \
-                "-" + str(checkTime.month) + \
-                "-" + str(checkTime.day) + \
-                " " + str(checkTime.hour) + \
-                ":" + str(checkTime.minute) + \
+            self.dateTimeStrCSV = str(checkTime.year).zfill(4)+ \
+                "-" + str(checkTime.month).zfill(2) + \
+                "-" + str(checkTime.day).zfill(2) + \
+                " " + str(checkTime.hour).zfill(2) + \
+                ":" + str(checkTime.minute).zfill(2) + \
                 ":" + "00.000"               
         else:
-            self.dateTimeStrCSV = str(checkTime.year)+ \
-                "-" + str(checkTime.month) + \
-                "-" + str(checkTime.day) + \
-                " " + str(checkTime.hour) + \
-                ":" + str(checkTime.minute) + \
+            self.dateTimeStrCSV = str(checkTime.year).zfill(4)+ \
+                "-" + str(checkTime.month).zfill(2) + \
+                "-" + str(checkTime.day).zfill(2) + \
+                " " + str(checkTime.hour).zfill(2) + \
+                ":" + str(checkTime.minute).zfill(2) + \
                 ":" + "30.000"   
         return ;
     
@@ -230,9 +259,9 @@ class node:
         print("===============MINTS===============")
         print(sensorDictionary)
         mP.writeCSV3( mN.getWritePathDateCSV(liveFolder,self.nodeID,\
-            datetime.strptime(self.dateTimeStrCSV,'%Y-%m-%d %H:%M:%S.%f').replace(tzinfo=tz.tzutc()).astimezone(tz.gettz()),\
+            datetime.strptime(self.dateTimeStrCSV,'%Y-%m-%d %H:%M:%S.%f'),\
                 "calibrated"),sensorDictionary)
-
+        mL.writeMQTTLatestRepublish(sensorDictionary,"mintsCalibrated",self.nodeID)
 
     def changeState(self):
         # print("CHANGE STATE")
@@ -262,7 +291,7 @@ class node:
         self.pm2_5.append(float(self.dataInPM['pm2_5']))
         self.pm5_0.append(float(self.dataInPM['pm5_0']))
         self.pm10_0.append(float(self.dataInPM['pm10_0']))
-        timeIn = datetime.strptime(self.dataInPM['dateTime'],'%Y-%m-%d %H:%M:%S.%f').replace(tzinfo=tz.tzutc()).astimezone(tz.gettz())
+        timeIn = datetime.strptime(self.dataInPM['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
         self.dateTimePM.append(timeIn)
         self.lastPMDateTime = timeIn
 
@@ -272,7 +301,7 @@ class node:
         self.temperature.append(float(self.dataInClimate['temperature']))
         self.pressure.append(float(self.dataInClimate['pressure']))
         self.humidity.append(float(self.dataInClimate['humidity']))
-        timeIn = datetime.strptime(self.dataInClimate['dateTime'],'%Y-%m-%d %H:%M:%S.%f').replace(tzinfo=tz.tzutc()).astimezone(tz.gettz())
+        timeIn = datetime.strptime(self.dataInClimate['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
         self.dateTimeClimate.append(timeIn)
         self.lastClimateDateTime = timeIn
         
@@ -282,7 +311,7 @@ class node:
         self.latitude.append(float(self.dataInGPS['latitudeCoordinate']))
         self.longitude.append(float(self.dataInGPS['longitudeCoordinate']))
         self.altitude.append(float(self.dataInGPS['altitude']))
-        timeIn  = datetime.strptime(self.dataInGPS['dateTime'],'%Y-%m-%d %H:%M:%S.%f').replace(tzinfo=tz.tzutc()).astimezone(tz.gettz())
+        timeIn  = datetime.strptime(self.dataInGPS['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
         self.dateTimeGPS.append(timeIn)
         self.lastGPSDateTime = timeIn
 
@@ -348,12 +377,12 @@ class node:
             self.latitudeAvg  = self.latitudeHC
 
     def update(self):
-        self.currentTime=  datetime.now().astimezone(tz.gettz())
+        self.currentTime=  datetime.now()
         self.nodeReader()
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
   
-    g1 = node(nodeIDs[int(sys.argv[1])-1]['nodeID'])
+#     g1 = node(nodeIDs[int(sys.argv[1])-1]['nodeID'])
 
  
