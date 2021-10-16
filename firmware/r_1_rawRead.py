@@ -81,12 +81,12 @@ def on_message(client, userdata, msg):
         # print("Data      : " + str(sensorDictionary))
         nodeIndex = getNodeIndex(nodeID)
         dateTime = datetime.datetime.strptime(sensorDictionary["dateTime"], '%Y-%m-%d %H:%M:%S.%f')
-        if sensorID == transmitters[nodeIndex]['pmSensor']:
-            nodeObjects[nodeIndex].nodeReaderPM(sensorDictionary)
-        if sensorID == transmitters[nodeIndex]['climateSensor']:
-            nodeObjects[nodeIndex].nodeReaderClimate(sensorDictionary)
-        if "GPSGPGGA2" == transmitters[nodeIndex]['climateSensor']:
-            nodeObjects[nodeIndex].nodeReaderGPS(sensorDictionary)
+        # if sensorID == transmitters[nodeIndex]['pmSensor']:
+        #     nodeObjects[nodeIndex].nodeReaderPM(sensorDictionary)
+        # if sensorID == transmitters[nodeIndex]['climateSensor']:
+        #     nodeObjects[nodeIndex].nodeReaderClimate(sensorDictionary)
+        # if "GPSGPGGA2" == transmitters[nodeIndex]['climateSensor']:
+        #     nodeObjects[nodeIndex].nodeReaderGPS(sensorDictionary)
         writePath = mSR.getWritePathMQTT(nodeID,sensorID,dateTime)
         exists    = mSR.directoryCheck(writePath)
         mSR.writeCSV2(writePath,sensorDictionary,exists)

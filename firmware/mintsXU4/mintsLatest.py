@@ -40,7 +40,7 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_publish(client, userdata, result):
-    print("MQTT Published!")
+    return;
 
 
 def connect(mqtt_client, mqtt_username, mqtt_password, broker_endpoint, port):

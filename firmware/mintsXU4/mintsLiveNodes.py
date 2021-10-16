@@ -255,9 +255,9 @@ class node:
                 ("dewPointMDL"      ,self.mdlDict["WIMDA_dewPoint_str"]),                
                ])
         
-        print()        
-        print("===============MINTS===============")
-        print(sensorDictionary)
+        # print()        
+        # print("===============MINTS===============")
+        # print(sensorDictionary)
         mP.writeCSV3( mN.getWritePathDateCSV(liveFolder,self.nodeID,\
             datetime.strptime(self.dateTimeStrCSV,'%Y-%m-%d %H:%M:%S.%f'),\
                 "calibrated"),sensorDictionary)
