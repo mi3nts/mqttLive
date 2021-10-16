@@ -27,7 +27,7 @@ mqttPort                 = 8883  # Secure port
 # senderNodes            = yaml.load(open(sensorNodesFile))
 mintsDefinitions         = yaml.load(open('mintsXU4/mintsDefinitions.yaml'))
 # utdNodes                 = yaml.load(open('mintsXU4/utdNodes.yaml'))
-
+tlsCert                   = mintsDefinitions['tlsCert']
 
 
 def findMacAddress():

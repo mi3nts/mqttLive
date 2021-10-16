@@ -85,7 +85,7 @@ def on_message(client, userdata, msg):
             nodeObjects[nodeIndex].nodeReaderPM(sensorDictionary)
         if sensorID == transmitters[nodeIndex]['climateSensor']:
             nodeObjects[nodeIndex].nodeReaderClimate(sensorDictionary)
-        if "GPSGPGGA2" == transmitters[nodeIndex]['climateSensor']:
+        if sensorID == "GPSGPGGA2":
             nodeObjects[nodeIndex].nodeReaderGPS(sensorDictionary)
         # writePath = mSR.getWritePathMQTT(nodeID,sensorID,dateTime)
         # exists    = mSR.directoryCheck(writePath)

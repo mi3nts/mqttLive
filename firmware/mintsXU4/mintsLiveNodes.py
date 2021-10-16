@@ -3,9 +3,9 @@ from os import name
 import time
 import random
 import pandas as pd
-import pyqtgraph as pg
+#import pyqtgraph as pg
 from collections import deque
-from pyqtgraph.Qt import QtGui, QtCore
+#from pyqtgraph.Qt import QtGui, QtCore
 from mintsXU4 import mintsSensorReader as mSR
 from mintsXU4 import mintsDefinitions as mD
 from mintsXU4 import mintsProcessing as mP
@@ -14,7 +14,7 @@ from mintsXU4 import mintsNow as mN
 
 # from dateutil import tz
 import numpy as np
-from pyqtgraph import AxisItem
+#from pyqtgraph import AxisItem
 from datetime import datetime, timedelta
 from time import mktime
 import statistics
@@ -43,7 +43,7 @@ class node:
         graphUpdateSpeedMs = 200
         lastRecords = 10
         # self.win                 = pg.GraphicsWindow( title="MINTS Ground Vehicle")
-        self.app                 = QtGui.QApplication([])
+        # self.app                 = QtGui.QApplication([])
         # self.lookBack            = timedelta(minutes=5)         
         ## IPS7100
         
@@ -252,12 +252,12 @@ class node:
                 ("temperatureMDL"   ,self.mdlDict["WIMDA_airTemperature_str"]),
                 ("pressureMDL"      ,self.mdlDict["YXXDR_barrometricPressureBars_str"]),
                 ("humidityMDL"      ,self.mdlDict["WIMDA_relativeHumidity_str"]),
-                ("dewPointMDL"      ,self.mdlDict["WIMDA_dewPoint_str"]),                
+                ("dewPointMDL"      ,self.mdlDict["WIMDA_dewPoint_str"])                
                ])
         
         # print()        
         # print("===============MINTS===============")
-        # print(sensorDictionary)
+        print(sensorDictionary)
         mP.writeCSV3( mN.getWritePathDateCSV(liveFolder,self.nodeID,\
             datetime.strptime(self.dateTimeStrCSV,'%Y-%m-%d %H:%M:%S.%f'),\
                 "calibrated"),sensorDictionary)

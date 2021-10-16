@@ -30,7 +30,7 @@ import datetime
 import os
 import csv
 
-import deepdish as dd
+#import deepdish as dd
 #from airMarML import BME280
 # from mintsXU4 import mintsLatest as mL
 from mintsXU4 import mintsDefinitions as mD
@@ -42,7 +42,7 @@ from collections import OrderedDict
 import netifaces as ni
 import math
 import pandas as pd
-import feather
+#import feather
 import glob
 from functools import reduce
 # from sklearn.linear_model import LinearRegression

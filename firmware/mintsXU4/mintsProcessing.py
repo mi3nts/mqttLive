@@ -30,7 +30,7 @@ import datetime
 import os
 import csv
 
-import deepdish as dd
+#import deepdish as dd
 #from airMarML import BME280
 # from mintsXU4 import mintsLatest as mL
 from mintsXU4 import mintsDefinitions as mD
@@ -42,11 +42,11 @@ from collections import OrderedDict
 import netifaces as ni
 import math
 import pandas as pd
-import feather
+#import feather
 import glob
 from functools import reduce
 from sklearn.linear_model import LinearRegression
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split

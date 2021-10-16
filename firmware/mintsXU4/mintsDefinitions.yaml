@@ -1,7 +1,8 @@
-# dataFolder : "/mfs/io/groups/lary/mintsData"
-dataFolder : "/home/teamlary/mnt/teamlary1/mintsData"
+dataFolder : "/mfs/io/groups/lary/mintsData"
+#dataFolder : "/home/teamlary/mnt/teamlary1/mintsData"
 #dataFolder : "/media/teamlary/teamlary3/air930/mintsData"
-
+#/mfs/io/groups/lary/certs
+tlsCert : "/mfs/io/groups/lary/certs/ca-certificates.crt"
 poolWorkers: 10
 
 timeSpan: 30
