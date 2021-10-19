@@ -1,0 +1,5 @@
+Live Update 
+nohup python3 l_1_liveUpdate.py >& logs/liveUpdate2021.log &
+
+Raw MQTT Read 
+nohup python3 r_1_rawRead.py >& logs/liveRead2021.log & 

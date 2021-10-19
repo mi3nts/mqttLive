@@ -257,7 +257,7 @@ class node:
         
         # print()        
         # print("===============MINTS===============")
-        print(sensorDictionary)
+        # print(sensorDictionary)
         mP.writeCSV3( mN.getWritePathDateCSV(liveFolder,self.nodeID,\
             datetime.strptime(self.dateTimeStrCSV,'%Y-%m-%d %H:%M:%S.%f'),\
                 "calibrated"),sensorDictionary)
