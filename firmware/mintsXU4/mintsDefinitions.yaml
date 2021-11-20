@@ -24,9 +24,9 @@ nodeIDs:
     climateSensorBegin: "2020-10-01"
     pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
-    latitude: 32.9921705757576
-    longitude: -96.757853439394
-    altitude: 222.2
+    latitude: 32.986025
+    longitude: -96.634558
+    altitude: 167.64
   - nodeID: 001e06318cd1
     climateSensor: "BME280"
     climateSensorBegin: "2019-01-01"
@@ -64,8 +64,8 @@ nodeIDs:
     climateSensorBegin: "2019-01-01"
     pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
-    latitude: 32.9921705757576
-    longitude: -96.757853439394
+    latitude: 32.75916733333334
+    longitude: -97.342318
     altitude: 222.2
   - nodeID: 001e06318c28
     climateSensor: "BME280"
@@ -96,8 +96,8 @@ nodeIDs:
     climateSensorBegin: "2019-01-01"
     pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
-    latitude: 32.9921705757576
-    longitude: -96.757853439394
+    latitude: 32.930372
+    longitude: -96.846657
     altitude: 222.2  
   - nodeID: 001e063239e6
     climateSensor: "BME280"
@@ -120,8 +120,8 @@ nodeIDs:
     climateSensorBegin: "2019-01-01"
     pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
-    latitude: 32.9921705757576
-    longitude: -96.757853439394
+    latitude: 32.51319133333333
+    longitude: -96.94129033333333
     altitude: 222.2  
   - nodeID: 001e06318cf1
     climateSensor: "BME280"
@@ -136,16 +136,16 @@ nodeIDs:
     climateSensorBegin: "2019-01-01"
     pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
-    latitude: 32.9921705757576
-    longitude: -96.757853439394
+    latitude: 32.9725635
+    longitude: -97.026494
     altitude: 222.2  
   - nodeID: 001e063239e4
     climateSensor: "BME280"
     climateSensorBegin: "2019-01-01"
     pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
-    latitude: 32.9921705757576
-    longitude: -96.757853439394
+    latitude: 32.9324471111111
+    longitude: -96.8155348166667
     altitude: 222.2  
   - nodeID: 001e06323952
     climateSensor: "BME280"
@@ -176,8 +176,40 @@ nodeIDs:
     climateSensorBegin: "2019-01-01"
     pmSensor: "IPS7100"
     pmSensorBegin: "2021-10-01"
+    latitude: 32.8147786666667
+    longitude: -96.6596062333333
+    altitude: 222.2
+  - nodeID: 001e06318c91
+    climateSensor: "BME280"
+    climateSensorBegin: "2019-01-01"
+    pmSensor: "IPS7100"
+    pmSensorBegin: "2021-10-01"
     latitude: 32.9921705757576
     longitude: -96.757853439394
+    altitude: 222.2
+  - nodeID: 001e06373724
+    climateSensor: "BME280"
+    climateSensorBegin: "2019-01-01"
+    pmSensor: "IPS7100"
+    pmSensorBegin: "2021-10-01"
+    latitude: 33.010268
+    longitude: -96.6438269
+    altitude: 222.2
+  - nodeID: 001e0637371e
+    climateSensor: "BME280"
+    climateSensorBegin: "2019-01-01"
+    pmSensor: "IPS7100"
+    pmSensorBegin: "2021-10-01"
+    latitude: 32.9921705757576
+    longitude: -96.757853439394
+    altitude: 222.2
+  - nodeID: 001e06373996
+    climateSensor: "BME280"
+    climateSensorBegin: "2019-01-01"
+    pmSensor: "IPS7100"
+    pmSensorBegin: "2021-10-01"
+    latitude: 32.7153833
+    longitude: -96.7475846
     altitude: 222.2
 
 sensors:
