@@ -76,9 +76,9 @@ def on_message(client, userdata, msg):
     try:
         [nodeID,sensorID ] = msg.topic.split('/')
         sensorDictionary = decoder.decode(msg.payload.decode("utf-8","ignore"))
-        # print("Node ID   :" + nodeID)
-        # print("Sensor ID :" + sensorID)
-        # print("Data      : " + str(sensorDictionary))
+        print("Node ID   :" + nodeID)
+        print("Sensor ID :" + sensorID)
+        print("Data      : " + str(sensorDictionary))
         nodeIndex = getNodeIndex(nodeID)
         dateTime = datetime.datetime.strptime(sensorDictionary["dateTime"], '%Y-%m-%d %H:%M:%S.%f')
         if sensorID == transmitters[nodeIndex]['pmSensor']:

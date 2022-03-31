@@ -211,13 +211,21 @@ class node:
     
     def getValidity(self):
         # print("GET Validity")        
-        return len(self.pm0_1)>20 and len(self.temperature)>1;
+        return len(self.pm0_1)>20;
 
     def doCSV(self):
-        temperatureCalibrated = mN.c2F(self.mdlDict["WIMDA_airTemperature_MDL"].predict(np.array(self.temperatureAvg).reshape(1,-1))[0])
-        pressureCalibrated    = mN.b2MB(self.mdlDict["YXXDR_barrometricPressureBars_MDL"].predict(np.array(self.pressureAvg).reshape(1,-1))[0])
-        humidityCalibrated    = self.mdlDict["WIMDA_relativeHumidity_MDL"].predict(np.array(self.humidityAvg).reshape(1,-1))[0]
-        dewPointCalibrated    = mN.c2F(self.mdlDict["WIMDA_dewPoint_MDL"].predict(np.array([self.temperatureAvg,self.pressureAvg,self.humidityAvg]).reshape(1,-1))[0])
+        if(len(self.temperature)>1):
+            
+            temperatureCalibrated = mN.c2F(self.mdlDict["WIMDA_airTemperature_MDL"].predict(np.array(self.temperatureAvg).reshape(1,-1))[0])
+            pressureCalibrated    = mN.b2MB(self.mdlDict["YXXDR_barrometricPressureBars_MDL"].predict(np.array(self.pressureAvg).reshape(1,-1))[0])
+            humidityCalibrated    = self.mdlDict["WIMDA_relativeHumidity_MDL"].predict(np.array(self.humidityAvg).reshape(1,-1))[0]
+            dewPointCalibrated    = mN.c2F(self.mdlDict["WIMDA_dewPoint_MDL"].predict(np.array([self.temperatureAvg,self.pressureAvg,self.humidityAvg]).reshape(1,-1))[0])
+        else:
+            temperatureCalibrated = self.temperatureAvg
+            pressureCalibrated    = self.pressureAvg
+            humidityCalibrated    = self.humidityAvg
+            dewPointCalibrated    = -1
+
 
         dateTimeNow = self.getTime()
         sensorDictionary = OrderedDict([
@@ -363,9 +371,14 @@ class node:
         self.pm5_0Avg      = statistics.mean(self.pm5_0)
         self.pm10_0Avg     = statistics.mean(self.pm10_0)       
         
-        self.temperatureAvg  = statistics.mean(self.temperature)
-        self.pressureAvg     = statistics.mean(self.pressure)
-        self.humidityAvg     = statistics.mean(self.humidity)
+        if (len(self.temperature))>1:
+            self.temperatureAvg  = statistics.mean(self.temperature)
+            self.pressureAvg     = statistics.mean(self.pressure)
+            self.humidityAvg     = statistics.mean(self.humidity)
+        else:
+            self.temperatureAvg  = -1
+            self.pressureAvg     = -1
+            self.humidityAvg     = -1
 
         if (len(self.altitude)>0):
             self.altitudeAvg  = statistics.mean(self.altitude)
